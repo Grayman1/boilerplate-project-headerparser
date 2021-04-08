@@ -20,9 +20,28 @@ app.get("/", function (req, res) {
 });
 
 
+
+//1. I can get IP address, preferred languages (from header Accept-Language) and system infos (from header user=Agent) from my device.
+
+//Example Usage:
+//[base url]/api/whoami
+
 // your first API endpoint... 
-app.get("/api/hello", function (req, res) {
-  res.json({greeting: 'hello API'});
+newObject = {};
+app.get("/api/whoami/", function (req, res) {
+// true use rIP address - security issues !!
+//app.enable('trust proxy')
+// const ipaddress = req.header('ip')
+
+const language = req.header('Accept-Language')
+const software = req.header('User-Agent')
+const ipaddress = "127.0.0.1"
+//  newObject.userAgent = req.headers('User-Agent')
+res.json({
+  ipaddress,
+  language,
+  software,
+})
 });
 
 
